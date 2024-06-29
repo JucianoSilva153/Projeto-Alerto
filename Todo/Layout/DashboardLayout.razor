@@ -1,0 +1,178 @@
+@inherits LayoutComponentBase
+@inject APIService api
+@inject NavigationManager rotas
+@inject IJSRuntime js
+
+
+@if (loaded)
+{
+    <div class=" flex h-screen bg-Primaria bg-opacity-10">
+        <div class="flex flex-col h-full w-[20%] ">
+            <div class=" h-[20%] flex justify-center items-center">
+                <h1 class=" text-Secundaria font-bold font-mono outline rounded-lg w-3/5 text-center text-5xl">
+                    ToDo<sup class=" text-xs">&COPY;</sup>
+                </h1>
+            </div>
+            <div class="h-[80%] flex justify-center items-start overflow-y-auto">
+                <ul class=" w-[90%] p-1 text-Secundaria space-y-3">
+                    <li>
+                        <a href="/resumo">
+                            <button
+                                class=" hover:border-Secundaria border-[transparent] border-2 transition-all p-2 text-left rounded-lg w-full">
+                                Resumo
+                            </button>
+                        </a>
+                    </li>
+                    <li>
+                        <details>
+                            <summary class=" list-none">
+                                <h1
+                                    class=" hover:border-Secundaria border-[transparent] border-2 transition-all p-2 text-left rounded-lg w-full">
+                                    Listas de Tarefa
+                                </h1>
+                            </summary>
+                            <div class=" flex flex-col justify-center items-end space-y-2">
+                                <a href="/listas/nova" class=" w-[90%]">
+                                    <button
+                                        class=" hover:border-Secundaria border-[transparent] border-opacity-10  border-2 transition-all p-2 text-left rounded-lg w-[90%]">
+                                        Nova Lista
+                                    </button>
+                                </a>
+                                <a href="/listas" class=" w-[90%]">
+                                    <button
+                                        class=" hover:border-Secundaria border-[transparent] border-2 transition-all p-2 text-left rounded-lg w-[90%]">
+                                        Ver Listas
+                                    </button>
+                                </a>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary class=" list-none">
+                                <h1
+                                    class=" hover:border-Secundaria border-[transparent] border-2 transition-all p-2 text-left rounded-lg w-full">
+                                    Tarefas
+                                </h1>
+                            </summary>
+                            <div class=" flex flex-col justify-center items-end space-y-2">
+                                <a href="/tarefas/nova" class=" w-[90%]">
+                                    <button
+                                        class=" hover:border-Secundaria border-[transparent] border-opacity-10  border-2 transition-all p-2 text-left rounded-lg w-[90%]">
+                                        Nova Tarefa
+                                    </button>
+                                </a>
+                                <a href="/tarefas" class=" w-[90%]">
+                                    <button
+                                        class=" hover:border-Secundaria border-[transparent] border-2 transition-all p-2 text-left rounded-lg w-[90%]">
+                                        Ver Tarefas
+                                    </button>
+                                </a>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary class=" list-none">
+                                <h1
+                                    class=" hover:border-Secundaria border-[transparent] border-2 transition-all p-2 text-left rounded-lg w-full">
+                                    Categorias
+                                </h1>
+                            </summary>
+                            <div class=" flex flex-col justify-center items-end space-y-2">
+                                <a href="/categoria/nova" class=" w-[90%]">
+                                    <button
+                                        class=" hover:border-Secundaria border-[transparent] border-opacity-10  border-2 transition-all p-2 text-left rounded-lg w-[90%]">
+                                        Nova Categoria
+                                    </button>
+                                </a>
+                                <a href="/categorias" class=" w-[90%]">
+                                    <button
+                                        class=" hover:border-Secundaria border-[transparent] border-2 transition-all p-2 text-left rounded-lg w-[90%]">
+                                        Ver Categorias
+                                    </button>
+                                </a>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <a href="">
+                            <button
+                                class=" drop-shadow-md hover:border-Secundaria border-[transparent] border-2 transition-all p-2 text-left rounded-lg w-full">
+                                Noificações
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class=" w-[80%]">
+            <div class=" h-[10%]  flex justify-center items-center">
+                <div class=" flex justify-center items-center w-4/5">
+                    <div class=" outline-2 outline-Primaria outline rounded-lg flex w-[85%] ">
+                        <input type="search" class=" p-2 w-4/5">
+                        <button class=" bg-Primaria text-Neutra w-1/5">Pesquisar</button>
+                    </div>
+                </div>
+                <div class="w-1/5 flex justify-end space-x-2 mx-1">
+                    <div class=" w-12 h-12 rounded-full bg-Primaria"></div>
+                    <div class=" w-12 h-12 rounded-full bg-Primaria relative" @onclick="MostrarMenu"></div>
+                    <div id="Menu" class=" hidden flex-col w-[25%] h-[55%] absolute bg-Neutra z-[100] shadow-Primaria shadow-md rounded-lg top-[10%] right-[2%]">
+                        <div class=" flex border-b-[2px] border-b-Primaria p-2 py-4">
+                            <h1 class="text-xl w-[90%] font-bold text-Primaria">Notificacoes <span class=" bg-Primaria px-2 rounded-full text-Neutra text-base">6</span></h1>
+                            <img class="w-[10%]" src="" alt="X" @onclick="OcultarMenu"/>
+                        </div>
+                        <div class="p-2 overflow-y-auto scroll-auto">
+                            <ul>
+                                @for (int i = 0; i < 3; i++)
+                                {
+                                    <li class=" hover:bg-Intermedia hover:bg-opacity-5">
+                                        <div class="border-b border-b-Secundaria py-2">
+                                            <div class="flex">
+                                                <h1 class=" w-[80%] text-Secundaria font-bold">Tarefa</h1>
+                                                <h2 class="w-[20%] text-sm">Estado</h2>
+                                            </div>
+                                            <p>Desricao da tarefa</p>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" bg-Neutra relative overflow-y-auto rounded-tl-xl h-[90%]">
+                @Body
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class=" w-full flex flex-col h-full justify-center items-center">
+        <h1>Carregando...</h1>
+    </div>
+}
+
+@code {
+
+    bool loaded = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!(await api.Autenticado()))
+            rotas.NavigateTo("/");
+        loaded = true;
+    }
+
+    async void MostrarMenu()
+    {
+        await js.InvokeVoidAsync("MostrarMenu");
+    }
+    
+    async void OcultarMenu()
+    {
+        await js.InvokeVoidAsync("OcultarMenu");
+    }
+
+}
