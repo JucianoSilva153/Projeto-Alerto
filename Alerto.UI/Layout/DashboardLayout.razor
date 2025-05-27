@@ -1,0 +1,191 @@
+@inherits LayoutComponentBase
+@inject APIService api
+@inject NavigationManager rotas
+@inject IJSRuntime js
+
+
+@if (loaded)
+{
+    <div class=" flex h-screen bg-Primaria bg-opacity-10">
+        <div class="flex flex-col h-full w-[20%] ">
+            <Logo></Logo>
+            <div class="h-[80%] flex justify-center items-start overflow-y-auto">
+                <ul class=" w-[90%] p-1 text-Secundaria space-y-3">
+                    <li>
+                        <a href="/resumo" class=" flex justify-center items-center hover:bg-Primaria hover:bg-opacity-20 hover:transition-all border-[transparent] border-2 p-2 gap-2 transition-all rounded-lg">
+                            <img src="assets/icons/resume-48.png" class="w-[22px] h-[22px]" alt="Resumo"/>
+                            <button
+                                class="text-left rounded-lg font-bold w-full">
+                                Resumo
+                            </button>
+                        </a>
+                    </li>
+                    <li>
+                        <details>
+                            <summary class="flex cursor-pointer items-center rounded-lg list-none hover:bg-Primaria hover:bg-opacity-20 border-[transparent] border-2 p-2 gap-2 transition-all">
+                                <img src="assets/icons/taskLists-48.png" class=" w-[20px] h-[20px]" alt="Resumo"/>
+                                <h1
+                                    class=" text-left font-bold w-full">
+                                    Listas de Tarefa
+                                </h1>
+                            </summary>
+                            <div class=" flex flex-col justify-center items-end space-y-2">
+                                <a href="/listas/nova" class="w-[90%] flex justify-center items-center hover:bg-Primaria hover:bg-opacity-15 border-[transparent] border-2 p-2 gap-2 transition-all rounded-lg">
+                                    <img src="assets/icons/add-48.png" class=" w-[20px] h-[20px]" alt="Nova Lista de Tarefas"/>
+                                    <button
+                                        class="text-left w-[90%]">
+                                        Nova Lista
+                                    </button>
+                                </a>
+                                <a href="/listas" class=" w-[90%] flex justify-center items-center hover:bg-Primaria hover:bg-opacity-15 border-[transparent] border-2 p-2 gap-2 transition-all rounded-lg">
+                                    <img src="assets/icons/view-48.png" class=" w-[20px] h-[20px]" alt="Nova Lista de Tarefas"/>
+                                    <button
+                                        class="text-left w-[90%]">
+                                        Ver Listas
+                                    </button>
+                                </a>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary class="flex cursor-pointer items-center rounded-lg list-none hover:bg-Primaria hover:bg-opacity-20 border-[transparent] border-2 p-2 gap-2 transition-all">
+                                <img src="assets/icons/task-50.png" class=" w-[20px] h-[20px]" alt="Nova Lista de Tarefas"/>
+                                <h1
+                                    class=" text-left font-bold w-full">
+                                    Tarefas
+                                </h1>
+                            </summary>
+                            <div class=" flex flex-col justify-center items-end space-y-2">
+                                <a href="/tarefas/nova" class=" w-[90%] flex justify-center items-center hover:bg-Primaria hover:bg-opacity-15 border-[transparent] border-2 p-2 gap-2 transition-all rounded-lg">
+                                    <img src="assets/icons/add-48.png" class=" w-[20px] h-[20px]" alt="Nova Lista de Tarefas"/>
+                                    <button
+                                        class=" text-left w-[90%]">
+                                        Nova Tarefa
+                                    </button>
+                                </a>
+                                <a href="/tarefas" class=" w-[90%] flex justify-center items-center hover:bg-Primaria hover:bg-opacity-15 border-[transparent] border-2 p-2 gap-2 transition-all rounded-lg">
+                                    <img src="assets/icons/view-48.png" class=" w-[20px] h-[20px]" alt="Nova Lista de Tarefas"/>
+                                    <button
+                                        class=" text-left w-[90%]">
+                                        Ver Tarefas
+                                    </button>
+                                </a>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary class="flex cursor-pointer items-center rounded-lg list-none hover:bg-Primaria hover:bg-opacity-20 border-[transparent] border-2 p-2 gap-2 transition-all">
+                                <img src="assets/icons/category-48.png" class=" w-[20px] h-[20px]" alt="Nova Lista de Tarefas"/>
+                                <h1
+                                    class=" text-left font-bold w-full">
+                                    Categorias
+                                </h1>
+                            </summary>
+                            <div class=" flex flex-col justify-center items-end space-y-2">
+                                <a href="/categoria/nova" class=" w-[90%] flex justify-center items-center hover:bg-Primaria hover:bg-opacity-15 border-[transparent] border-2 p-2 gap-2 transition-all rounded-lg">
+                                    <img src="assets/icons/add-48.png" class=" w-[20px] h-[20px]" alt="Nova Lista de Tarefas"/>
+                                    <button
+                                        class=" text-left w-[90%]">
+                                        Nova Categoria
+                                    </button>
+                                </a>
+                                <a href="/categorias" class=" w-[90%] flex justify-center items-center hover:bg-Primaria hover:bg-opacity-15 border-[transparent] border-2 p-2 gap-2 transition-all rounded-lg">
+                                    <img src="assets/icons/view-48.png" class=" w-[20px] h-[20px]" alt="Nova Lista de Tarefas"/>
+                                    <button
+                                        class=" text-left w-[90%]">
+                                        Ver Categorias
+                                    </button>
+                                </a>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <a href="#" class=" flex justify-center items-center hover:bg-Primaria hover:bg-opacity-20 border-[transparent] border-2 p-2 gap-2 transition-all rounded-lg">
+                            <img src="assets/icons/notification-48.png" class="w-[22px] h-[22px]" alt="Resumo"/>
+                            <button
+                                class="text-left rounded-lg font-bold w-full">
+                                Notificacoes
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class=" w-[80%]">
+            <div class=" h-[10%]  flex justify-center items-center">
+                <div class=" flex justify-center items-center w-4/5">
+                    <div class=" outline-2 outline-Primaria outline content-between rounded-lg flex w-[70%] ">
+                        <input type="search" class=" outline-0 p-2 w-[90%]">
+                        <button class=" bg-Primaria text-Neutra items-center  w-[10%] flex justify-center rounded-br rounded-tr">
+                            <img src="assets/icons/search-48.png" alt="Pesquisar" width="30px" height="30px"/>
+                        </button>
+                    </div>
+                </div>
+                <div class="w-1/5 flex justify-end space-x-2 mx-1">
+                    <div class=" w-12 h-12 rounded-full relative flex justify-center items-center" @onclick="MostrarMenu">
+                        <img src="assets/icons/notification-primary-48.png" width="38px" alt="Notificacoes"/>
+                    </div>
+                    <div class=" w-12 h-12 rounded-full flex justify-center items-center">
+                        <img src="assets/icons/user-48.png" width="38px" alt="Minha Conta"/>
+                    </div>
+                    <div id="Menu" class=" hidden flex-col w-[25%] h-[55%] transition absolute bg-Neutra z-[100] shadow-Primaria shadow-md rounded-lg top-[10%] right-[2%]">
+                        <div class=" flex border-b-[2px] border-b-Primaria p-2 py-4">
+                            <h1 class="text-xl w-[90%] font-bold text-Primaria">Notificacoes <span class=" bg-Primaria px-2 rounded-full text-Neutra text-base">6</span></h1>
+                            <img class="w-[10%] transition-all hover:scale-105" src="assets/icons/close-24.png" alt="Fechar" @onclick="OcultarMenu"/>
+                        </div>
+                        <div class="p-2 overflow-y-auto scroll-auto">
+                            <ul>
+                                @for (int i = 0; i < 3; i++)
+                                {
+                                    <li class=" hover:bg-Intermedia hover:bg-opacity-5">
+                                        <div class="border-b border-b-Secundaria py-2">
+                                            <div class="flex">
+                                                <h1 class=" w-[80%] text-Secundaria font-bold">Tarefa</h1>
+                                                <h2 class="w-[20%] text-sm">Estado</h2>
+                                            </div>
+                                            <p>Descricao da tarefa</p>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" bg-Neutra relative overflow-y-auto rounded-tl-xl h-[90%] pt-[20px]">
+                @Body
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class=" w-full flex flex-col h-full justify-center items-center">
+        <h1>Carregando...</h1>
+    </div>
+}
+
+@code {
+
+    bool loaded = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!(await api.Autenticado()))
+            rotas.NavigateTo("/");
+        loaded = true;
+    }
+
+    async void MostrarMenu()
+    {
+        await js.InvokeVoidAsync("MostrarMenu");
+    }
+
+    async void OcultarMenu()
+    {
+        await js.InvokeVoidAsync("OcultarMenu");
+    }
+
+}

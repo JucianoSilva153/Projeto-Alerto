@@ -1,0 +1,19 @@
+@if (type == "normal")
+{
+    <div class="h-[20%] flex justify-center items-center p-4">
+        <img src="assets/alertoLogos/Alerto_logo_bell.png" class="w-[90%]" alt="logo"/>
+    </div>
+}
+else if (type == "mid")
+{
+    <div class=" h-[20%] w-[60%] flex justify-center items-center">
+        <div class=" h-[20%] flex justify-center items-center">
+            <img src="assets/alertoLogos/Alerto_Bell.png" alt="logo"/>
+        </div>
+    </div>
+}
+
+@code
+{
+    [Parameter] public string type { get; set; } = "normal";
+}

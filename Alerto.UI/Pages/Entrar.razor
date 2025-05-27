@@ -1,0 +1,118 @@
+@page "/entrar"
+@inject APIService api
+@inject NavigationManager rota
+
+<div class=" flex justify-center items-center flex-col gap-8 h-screen">
+    <div
+        class=" flex items-center lg:justify-center flex-col w-4/5 lg:w-2/6 md:w-2/4 lg:p-6 lg:shadow-lg lg:shadow-Primaria rounded-lg h-[60%]">
+
+        <h1 class="text-Primaria text-3xl text-start w-[100%] my-2 font-bold">Entrar</h1>
+
+        <div class=" space-y-8">
+            <div class=" space-y-4">
+                <input type="email" placeholder="Email ou telefone" name="" @bind-value="Email" required
+                       class=" py-2 caret-Intermedia focus:outline-0 focus:border-b-Intermedia transition-all w-full border-b-2 border-Primaria">
+                <input type="password" placeholder="Palavra-passe" name="" @bind-value="Password" required
+                       class=" py-2 caret-Intermedia focus:outline-0 focus:border-b-Intermedia transition-all w-full border-b-2 border-Primaria">
+                <button @onclick="Login"
+                        class=" p-2 w-full bg-Primaria rounded flex justify-center items-center space-x-2 text-Neutra hover:scale-[1.05] transition-all">
+                    @if (Procesando)
+                    {
+                        <div class="process"></div>
+                        <span>@TextoBotao</span>
+                    }
+                    else
+                    {
+                        <span>@TextoBotao</span>
+                    }
+                </button>
+                <h1 class="text-center w-full">ou</h1>
+                <div class=" flex justify-center gap-2 items-center">
+
+                    <button
+                        @onclick="LoginViaGoogle"
+                        class=" p-2 border-2 border-Primaria rounded flex justify-center items-center space-x-2 text-Primaria font-bold hover:scale-[1.05] transition-all">
+                        <span>
+                            <img src="assets/icons/google-50.png" width="20px" alt="entrar com conta google"/>
+                        </span>
+                    </button>
+                    <button
+                        class=" p-2 border-2 border-Primaria rounded flex justify-center items-center space-x-2 text-Primaria font-bold hover:scale-[1.05] transition-all">
+                        <span>
+                            <img src="assets/icons/facebook-50.png" width="20px" alt="entrar com conta google"/>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" flex flex-wrap text-center">
+        <span class=" text-Secundaria text-sm w-full">
+            Não possui uma conta?
+            <span class=" text-Primaria">
+                <a
+                    href="/cadastro">
+                    Crie uma agora!!
+                </a>
+            </span>
+        </span>
+        <div class="process"></div>
+        <span class=" text-sm text-Primaria w-full">
+            <a href="">
+                Esqueceu sua Palavra
+                Palavra-passe?
+            </a>
+        </span>
+    </div>
+</div>
+
+
+@code {
+
+    string Email = "";
+    string Password = "";
+
+    string TextoBotao = "Entrar";
+    bool Procesando = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (await api.Autenticado())
+        {
+            rota.NavigateTo("/admin");
+        }
+    }
+
+    async Task Login()
+    {
+        if (Email != "" && Password != "")
+        {
+            Procesando = true;
+
+            TextoBotao = "Processando...";
+            if (await api.Autenticar(Email, Password))
+                Rota.NavigateTo("/admin");
+
+            TextoBotao = "Entrar";
+            Procesando = false;
+        }
+        else
+        {
+            TextoBotao = "Por favor, preencha todos os campos acima!";
+        }
+    }
+
+    async Task LoginViaGoogle()
+    {
+        Procesando = true;
+
+        TextoBotao = "Processando...";
+
+        var returnUrl = rota.BaseUri + "authConfirm";
+        rota.NavigateTo($"{api.BaseURI}/api/conta/login-google?returnUrl={Uri.EscapeDataString(returnUrl)}", forceLoad: true);
+
+        TextoBotao = "Entrar";
+        Procesando = false;
+    }
+
+}
