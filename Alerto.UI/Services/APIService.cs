@@ -298,7 +298,7 @@ public class APIService
         return false;
     }
 
-    public async Task<bool> ConcluirTarefa(int IdTarefa)
+    public async Task<bool> ConcluirTarefa(Guid IdTarefa)
     {
         try
         {
@@ -339,7 +339,7 @@ public class APIService
         return false;
     }
 
-    public async Task<bool> EliminarCategoria(int IdCategoria)
+    public async Task<bool> EliminarCategoria(Guid IdCategoria)
     {
         try
         {

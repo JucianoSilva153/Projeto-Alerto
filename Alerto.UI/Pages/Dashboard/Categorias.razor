@@ -54,7 +54,7 @@
         StateHasChanged();
     }
 
-    async void Eliminar(int idCategoria)
+    async void Eliminar(Guid idCategoria)
     {
         Categoria = ListaCategoria.Find(l => l.Id == idCategoria);
         MostrarPopup = true;

@@ -87,7 +87,7 @@
         StateHasChanged();
     }
 
-    private async void ConcluirTarefa(int ID)
+    private async void ConcluirTarefa(Guid ID)
     {
         if (await api.ConcluirTarefa(ID))
         {
