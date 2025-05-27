@@ -1,0 +1,58 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alerto.API", "Alerto.API\Alerto.API.csproj", "{D6EEA19A-4ABA-4577-9DE7-DE94BBF67334}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alerto.UI", "Alerto.UI\Alerto.UI.csproj", "{92BA928E-2DD9-4939-9280-E3EF3A2C5D02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alerto.Domain", "Alerto.Domain\Alerto.Domain.csproj", "{F7DECC35-AD63-416D-997A-D19FC59F6CF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alerto.Infrastructure", "Alerto.Infrastructure\Alerto.Infrastructure.csproj", "{1060486A-25E5-4970-A5DA-ACCB00A600E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alerto.Persistance", "Alerto.Persistance\Alerto.Persistance.csproj", "{1BA80877-7CD3-4ADF-9934-14BD116FAD96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alerto.Common", "Alerto.Common\Alerto.Common.csproj", "{83549C7D-8EB1-4001-A65E-594E5BC25771}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alerto.Application", "Alerto.Application\Alerto.Application.csproj", "{A1552974-3EA0-4C7F-9E61-FC8EF89F93D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6EEA19A-4ABA-4577-9DE7-DE94BBF67334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6EEA19A-4ABA-4577-9DE7-DE94BBF67334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6EEA19A-4ABA-4577-9DE7-DE94BBF67334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6EEA19A-4ABA-4577-9DE7-DE94BBF67334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92BA928E-2DD9-4939-9280-E3EF3A2C5D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92BA928E-2DD9-4939-9280-E3EF3A2C5D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92BA928E-2DD9-4939-9280-E3EF3A2C5D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92BA928E-2DD9-4939-9280-E3EF3A2C5D02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7DECC35-AD63-416D-997A-D19FC59F6CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7DECC35-AD63-416D-997A-D19FC59F6CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7DECC35-AD63-416D-997A-D19FC59F6CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7DECC35-AD63-416D-997A-D19FC59F6CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1060486A-25E5-4970-A5DA-ACCB00A600E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1060486A-25E5-4970-A5DA-ACCB00A600E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1060486A-25E5-4970-A5DA-ACCB00A600E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1060486A-25E5-4970-A5DA-ACCB00A600E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BA80877-7CD3-4ADF-9934-14BD116FAD96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BA80877-7CD3-4ADF-9934-14BD116FAD96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BA80877-7CD3-4ADF-9934-14BD116FAD96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BA80877-7CD3-4ADF-9934-14BD116FAD96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83549C7D-8EB1-4001-A65E-594E5BC25771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83549C7D-8EB1-4001-A65E-594E5BC25771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83549C7D-8EB1-4001-A65E-594E5BC25771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83549C7D-8EB1-4001-A65E-594E5BC25771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1552974-3EA0-4C7F-9E61-FC8EF89F93D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1552974-3EA0-4C7F-9E61-FC8EF89F93D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1552974-3EA0-4C7F-9E61-FC8EF89F93D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1552974-3EA0-4C7F-9E61-FC8EF89F93D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

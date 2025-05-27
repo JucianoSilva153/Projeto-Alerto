@@ -9,8 +9,6 @@ public class Notificacao
     public EstadoNotificacao Estado { get; set; } = EstadoNotificacao.NotVisualized;
     public DateTime NotificarAos { get; set; }
     public bool Visualizada { get; set; } = false;
-
-    public ModoChato ModoChato { get; set; } = new ModoChato();
     
     public Guid ContaId { get; set; }
     public Conta Conta { get; set; }
