@@ -105,7 +105,7 @@ public class APIService
                     await cookies.CriarCookie("token", resultado.Target.ToString(), DuracaoCookie);
                     await AtribuiTokenAoHeader();
 
-                    if (await RetornarContaPeloEmail(Email))
+                    if (await VerificarAutenticacao())
                         return true;
                 }
             }
@@ -149,29 +149,17 @@ public class APIService
         return false;
     }
 
-    private async Task<bool> RetornarContaPeloEmail(string email)
+    private async Task<bool> VerificarAutenticacao()
     {
-        AtribuiTokenAoHeader();
+        await AtribuiTokenAoHeader();
         try
         {
             var response = await client.GetFromJsonAsync<RequestResponse>(
-                $"{BaseURI}/api/Conta/PorEmail/{email}"
+                $"{BaseURI}/api/Conta/Autenticado"
             );
 
             if (response.Sucesso)
-            {
-                try
-                {
-                    conta = JsonConvert.DeserializeObject<ContaLogadaDTO>(response.Target.ToString());
-
-                    if (conta is not null)
-                        return true;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
+                return true;
         }
         catch (System.Exception e)
         {
