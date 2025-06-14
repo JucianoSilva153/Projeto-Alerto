@@ -7,7 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Alerto.Persistance.Repositories;
 
-public class TarefasRepository(DBToDO acessoDados, INotificacaoRepository acessoNotificacoes, ICurrentUser currentUser) : ITarefasRepository
+public class TarefasRepository(
+    DBToDO acessoDados,
+    INotificacaoRepository acessoNotificacoes,
+    ICurrentUser currentUser) : ITarefasRepository
 {
     public async Task<RequestResponse> CreateTask(CriaTarefaDTO tarefa)
     {

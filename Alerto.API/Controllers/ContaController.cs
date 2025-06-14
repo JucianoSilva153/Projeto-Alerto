@@ -48,8 +48,8 @@ namespace Alerto.API.Controllers
                 var result = await sender.SendMessage(new Message
                 {
                     from = "923679528",
-                    message = "Testando",
-                    to = "935175591"
+                    message = "Testando...",
+                    to = "921765383"
                 });
 
                 if (result)

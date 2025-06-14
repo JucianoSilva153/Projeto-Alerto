@@ -2,11 +2,14 @@
 using Alerto.API.ToDo.Services;
 using Alerto.Domain.Interfaces;
 using Alerto.Infrastructure.Services;
+using Alerto.Infrastructure.Services.ModoChatoService;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Quartz;
+using Quartz.AspNetCore;
 
 namespace Alerto.Infrastructure;
 
@@ -14,9 +17,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInsfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-
         services.AddScoped<AuthService>();
-        services.AddScoped<NotificacaoService>();
+        services.AddScoped<AlertoService>();
         services.AddScoped<ISMSSender, SMSSender>();
         //services.AddHostedService<NotificacaoTaskService>();
 
@@ -26,7 +28,7 @@ public static class DependencyInjection
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddCookie()
-            .AddGoogle(GoogleDefaults.AuthenticationScheme,options =>
+            .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
             {
                 options.ClientId = configuration["GoogleAuth:ClientId"];
                 options.ClientSecret = configuration["GoogleAuth:ClientSecret"];
@@ -58,10 +60,22 @@ public static class DependencyInjection
                     }
                 };
             });
-        
+
         services.AddScoped<ICurrentUser, CurrentUserService>();
 
-        
+
+        services.AddQuartz(q =>
+        {
+            q.UsePersistentStore(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("Default"));
+            });
+        });
+
+        // Inicia o serviço junto com o App
+        services.AddQuartzServer(options => { options.WaitForJobsToComplete = true; });
+
+
         return services;
     }
 }

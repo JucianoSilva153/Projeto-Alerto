@@ -154,11 +154,11 @@ public class APIService
         await AtribuiTokenAoHeader();
         try
         {
-            var response = await client.GetFromJsonAsync<RequestResponse>(
+            var response = await client.GetAsync(
                 $"{BaseURI}/api/Conta/Autenticado"
             );
 
-            if (response.Sucesso)
+            if (response.IsSuccessStatusCode)
                 return true;
         }
         catch (System.Exception e)

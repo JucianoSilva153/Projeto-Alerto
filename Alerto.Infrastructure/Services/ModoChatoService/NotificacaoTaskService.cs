@@ -1,4 +1,4 @@
-namespace Alerto.Infrastructure.Services;
+namespace Alerto.Infrastructure.Services.ModoChatoService;
 /*
 public class NotificacaoTaskService : BackgroundService
 {

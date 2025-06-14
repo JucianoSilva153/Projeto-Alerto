@@ -9,8 +9,7 @@ public class Tarefa
     public string? DataConclusao { get; set; }
     public string? DataCriacao { get; set; }
     public bool Concluida { get; set; } = false;
-
-
+    
     
     public Guid ContaId { get; set; }
     public Conta Conta { get; set; }

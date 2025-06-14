@@ -3,16 +3,21 @@ using System.Threading.Tasks;
 using Alerto.Common.Abstractions;
 using Alerto.Common.DTO;
 using Alerto.Domain.Interfaces;
+using Alerto.Infrastructure.Services.ModoChatoService;
 
 namespace Alerto.Application.Services;
 
-public class TarefaService(ITarefasRepository tarefasRepository)
+public class TarefaService(ITarefasRepository tarefasRepository, IAlertoService alertoService)
 {
     public async Task<RequestResponse> NovaTarefaAsync(CriaTarefaDTO novaTarefa)
     {
         try
         {
-            return await tarefasRepository.CreateTask(novaTarefa);
+            var result = await tarefasRepository.CreateTask(novaTarefa);
+            if (result.Sucesso && novaTarefa.ModoChato is not null)
+                await alertoService.AgendarAlarme(novaTarefa.ModoChato);
+
+            return result;
         }
         catch (Exception e)
         {
@@ -25,12 +30,16 @@ public class TarefaService(ITarefasRepository tarefasRepository)
             Sucesso = false
         };
     }
-    
+
     public async Task<RequestResponse> ConcluirTarefaAsync(Guid tarefaId)
     {
         try
         {
-            return await tarefasRepository.CompleteTask(tarefaId);
+            var result = await tarefasRepository.CompleteTask(tarefaId);
+            if (result.Sucesso)
+                await alertoService.CancelarAlarmes(tarefaId);
+
+            return result;
         }
         catch (Exception e)
         {
@@ -43,7 +52,7 @@ public class TarefaService(ITarefasRepository tarefasRepository)
             Sucesso = false
         };
     }
-    
+
     public async Task<RequestResponse> RetornarTarefasAsync()
     {
         try
@@ -61,7 +70,7 @@ public class TarefaService(ITarefasRepository tarefasRepository)
             Sucesso = false
         };
     }
-    
+
     public async Task<RequestResponse> RetornarTarefaPeloIdAsync(Guid tarefaId)
     {
         try

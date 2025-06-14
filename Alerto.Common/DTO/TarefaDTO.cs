@@ -7,6 +7,7 @@ public class CriaTarefaDTO
     public string Descricao { get; set; }
     public string? Categoria { get; set; }
     public string? Lista { get; set; }
+    public ModoChatoDTO? ModoChato { get; set; } = null;
     public DateTime Conclusao { get; set; }
 }
 

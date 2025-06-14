@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Alerto.Domain\Alerto.Domain.csproj" />
+      <ProjectReference Include="..\Alerto.Infrastructure\Alerto.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
