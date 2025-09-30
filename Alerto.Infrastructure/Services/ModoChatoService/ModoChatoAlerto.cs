@@ -20,6 +20,7 @@ public class ModoChatoAlerto : IJob
 
         var tarefa = await _dbContext.Tarefas.FindAsync(tarefaId);
         if (tarefa == null) return;
+        
 
         // Enviar notificação ou alarme...
         // Por ex.: Enviar um email, ou um push notification

@@ -1,11 +1,10 @@
 ﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using Microsoft.JSInterop;
+using Alerto.Common.Abstractions;
+using Alerto.Common.DTO;
 using Newtonsoft.Json;
 using Todo.Configuration;
-using Todo.Models;
-using Todo.Models.DTO;
 
 namespace Todo.Services;
 

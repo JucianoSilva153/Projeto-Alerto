@@ -15,3 +15,16 @@ window.MostrarEliminarCategoria = () => {
 window.OcultarEliminarCategoria = () => {
     document.getElementById("popEliminarCategoria").style.display = "none";
 }
+
+window.showOrHideModal = (modalId, isToShow) => {
+    var modal = document.getElementById(modalId);
+    
+    if (!modal)
+        return;
+    
+    if (isToShow) {
+        modal.style.display = "flex";
+    } else {
+        modal.style.display = "none";
+    }
+}

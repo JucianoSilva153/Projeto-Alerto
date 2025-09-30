@@ -1,0 +1,20 @@
+@typeparam T
+
+<button class="@CssClass" @onclick="OnClick.InvokeAsync">
+    @ChildContent
+</button>
+
+@code {
+    [Parameter] public EventCallback<T> OnClick { get; set; }
+    [Parameter] public string Tipo { get; set; } = "primario"; // primario, secundario, outline, danger
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string CssClass => Tipo switch
+    {
+        "primario" => "px-4 py-2 bg-Primaria text-Neutra rounded-lg shadow-md hover:scale-105 hover:bg-Intermedia transition-all",
+        "secundario" => "px-4 py-2 bg-Secundaria text-Neutra rounded-lg shadow-md hover:scale-105 hover:bg-Intermedia transition-all",
+        "outline" => "px-4 py-2 border-2 border-Primaria text-Primaria rounded-lg font-semibold hover:scale-105 hover:bg-Primaria/10 transition-all",
+        "danger" => "px-4 py-2 bg-red-600 text-white rounded-lg shadow-md hover:scale-105 hover:bg-red-700 transition-all",
+        _ => "px-4 py-2 bg-Primaria text-Neutra rounded-lg shadow-md hover:scale-105 transition-all"
+    };
+}

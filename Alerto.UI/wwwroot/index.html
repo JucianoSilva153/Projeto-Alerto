@@ -7,6 +7,11 @@
     <title>BlazeToDo</title>
     <base href="/"/>
     <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+
+    <link href="manifest.json" rel="manifest"/>
+    <link rel="icon" sizes="192x192" href="./assets/alertoLogos/Alerto_Bell.png"/>
+    <link rel="icon" sizes="512x512" href="./assets/alertoLogos/Alerto_Bell.png"/>
 
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="BlazeToDo.styles.css" rel="stylesheet" /> -->
@@ -14,12 +19,13 @@
 
 <body class=" font-sans" id="main">
 <div id="app">
-    <div class="Loading"> 
+    <div class="Loading">
         <div class="loader"></div>
     </div>
     <div class="loading-progress-text text-Primaria"></div>
 </div>
 <script src="_framework/blazor.webassembly.js"></script>
+<script>navigator.serviceWorker.register('service-worker.js');</script>
 <script src="js/Cookies.js"></script>
 <script src="js/script.js"></script>
 </body>

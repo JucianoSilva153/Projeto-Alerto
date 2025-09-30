@@ -1,11 +1,6 @@
 @page "/categorias"
 @layout DashboardLayout
 
-
-@if (MostrarPopup)
-{
-    <EliminarCategoria Categoria="@Categoria"/>
-}
 <div class=" h-full flex flex-col space-y-4 justify-center items-center">
     <div class=" w-[95%] h-full space-y-4">
         <div class=" space-y-2">
@@ -42,6 +37,7 @@
     </div>
 </div>
 
+<EliminarCategoria Categoria="@Categoria"/>
 
 @code {
     public List<ListaAlteraCategorias> ListaCategoria { get; set; } = new List<ListaAlteraCategorias>();

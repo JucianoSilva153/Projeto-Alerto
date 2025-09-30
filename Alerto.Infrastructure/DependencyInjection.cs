@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Alerto.API.ToDo.Services;
 using Alerto.Domain.Interfaces;
 using Alerto.Infrastructure.Services;
@@ -18,7 +20,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInsfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<AuthService>();
-        services.AddScoped<AlertoService>();
+        services.AddScoped<IAlertoService, AlertoService>();
         services.AddScoped<ISMSSender, SMSSender>();
         //services.AddHostedService<NotificacaoTaskService>();
 
@@ -68,7 +70,8 @@ public static class DependencyInjection
         {
             q.UsePersistentStore(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("Default"));
+                options.UseMySql(configuration.GetConnectionString("Default"));
+                options.UseNewtonsoftJsonSerializer();
             });
         });
 

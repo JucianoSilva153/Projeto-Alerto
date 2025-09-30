@@ -16,7 +16,7 @@ else
             </div>
             <input type="text" placeholder="Nome da Lista" @bind="NomeTarefa"
                    class=" py-2 caret-Intermedia focus:outline-0 focus:border-b-Intermedia transition-all w-full border-b-2 border-Primaria">
-            <button @onclick="NovaLista" class=" p-2 bg-Primaria rounded text-Neutra hover:scale-[1.05] transition-all">Adicionar lista</button>
+            <AlertoButton T="string" OnClick="NovaLista" Tipo="primario">Adicionar lista</AlertoButton>
         </div>
     </div>
 }

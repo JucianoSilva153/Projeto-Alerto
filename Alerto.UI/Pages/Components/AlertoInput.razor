@@ -1,0 +1,25 @@
+@typeparam T
+
+<div class="relative w-full">
+    @if (!string.IsNullOrEmpty(Icone))
+    {
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-Primaria">
+            <i class="@Icone"></i>
+        </span>
+    }
+
+    <input type="@Tipo"
+           placeholder="@Placeholder"
+           class="w-full py-2 @(Icone != null ? "pl-10" : "pl-3") pr-3 
+                  rounded-lg border-2 border-Primaria bg-transparent
+                  focus:outline-none focus:ring-2 focus:ring-Intermedia transition-all"
+           @bind="Value" />
+</div>
+
+@code {
+    [Parameter] public string Tipo { get; set; } = "text"; // text, email, password, date...
+    [Parameter] public string Placeholder { get; set; } = string.Empty;
+    [Parameter] public string? Icone { get; set; } // Ex.: "fa fa-user"
+    [Parameter] public T Value { get; set; }
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+}

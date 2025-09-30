@@ -8,7 +8,8 @@ public class CriaTarefaDTO
     public string? Categoria { get; set; }
     public string? Lista { get; set; }
     public ModoChatoDTO? ModoChato { get; set; } = null;
-    public DateTime Conclusao { get; set; }
+    public DateOnly DataConclusao { get; set; }
+    public TimeOnly HoraConclusao { get; set; } = TimeOnly.FromDateTime(DateTime.Now).AddHours(1);
 }
 
 public class ListaTarefaDTO {

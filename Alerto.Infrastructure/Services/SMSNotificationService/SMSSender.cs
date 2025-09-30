@@ -15,7 +15,7 @@ public class SMSSender : OMBALA, ISMSSender
             var result = await ombalaHttpClient.PostAsJsonAsync("/v1/messages", msg);
             if (result.IsSuccessStatusCode)
                 return true;
-            Console.WriteLine("Erro ao enviar mensagem: " + result.Content);
+            Console.WriteLine("Erro ao enviar mensagem: " + result.Content.ReadAsStringAsync().Result);
         }
         catch (Exception e)
         {

@@ -41,7 +41,7 @@ namespace Alerto.API.Controllers
 
         [HttpGet("message")]
         [AllowAnonymous]
-        public async Task<IActionResult> SendMessage([FromServices] ISMSSender sender)
+        public async Task<IActionResult> SendMessage([FromServices] ISMSSender sender, [FromQuery] String number)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace Alerto.API.Controllers
                 {
                     from = "923679528",
                     message = "Testando...",
-                    to = "921765383"
+                    to = number
                 });
 
                 if (result)

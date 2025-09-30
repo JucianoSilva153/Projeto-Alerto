@@ -1,3 +1,4 @@
+using System.Globalization;
 using Alerto.Common.Abstractions;
 using Alerto.Common.DTO;
 using Alerto.Domain.Entities;
@@ -19,14 +20,17 @@ public class TarefasRepository(
             var IdLista = (await acessoDados.Listas.FirstOrDefaultAsync(l => l.Nome == tarefa.Lista)).Id;
             var IdCategoria = (await acessoDados.Categorias.FirstOrDefaultAsync(l => l.Nome == tarefa.Categoria)).Id;
 
+            var dataConclusao = tarefa.DataConclusao.ToDateTime(tarefa.HoraConclusao);
+            DateTime notificarAos = dataConclusao.Subtract(DateTime.Now - dataConclusao);
+            
             var NovaTarefa = new Tarefa
             {
                 Nome = tarefa.Tarefa,
                 Concluida = false,
                 Descricao = tarefa.Descricao,
                 CategoriaId = IdCategoria,
-                DataConclusao = tarefa.Conclusao.ToString(),
-                DataCriacao = DateTime.Now.ToString(),
+                DataConclusao = dataConclusao.ToString(CultureInfo.CurrentCulture),
+                DataCriacao = DateTime.Now.ToString(CultureInfo.CurrentCulture),
                 Prioridade = tarefa.Prioridade,
                 ListaId = IdLista,
                 ContaId = currentUser.ContaId
@@ -35,10 +39,14 @@ public class TarefasRepository(
             var tarefaAdded = await acessoDados.Tarefas.AddAsync(NovaTarefa);
             var task = (ListaTarefaDTO) (await GetTaskById(tarefaAdded.Entity.Id)).Target;
 
+
+            if (tarefa.ModoChato is not null && tarefa.ModoChato.IsAtivated)
+                notificarAos = Convert.ToDateTime(dataConclusao.AddDays(-(double)tarefa.ModoChato.DiasAntes!));
+            
             var Notify = new CriarNotificacaoDTO()
             {
                 Tarefa = task,
-                NotificarAos = Convert.ToDateTime(tarefa.Conclusao.Subtract(DateTime.Now - tarefa.Conclusao)),
+                NotificarAos = notificarAos,
             };
 
             var SaveResult = await acessoDados.SaveChangesAsync();

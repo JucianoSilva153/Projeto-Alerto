@@ -1,0 +1,21 @@
+{
+  "name": "Alerto",
+  "short_name": "Alerto",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#5688C7",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "./assets/alertoLogos/Alerto_Bell.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "./assets/alertoLogos/Alerto_Bell.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}

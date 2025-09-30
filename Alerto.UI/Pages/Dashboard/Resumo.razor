@@ -34,7 +34,7 @@
 {
     public List<ListaTarefaDTO>? ListaTarefas { get; set; } = new List<ListaTarefaDTO>();
     //public List<RetornaListaTarefasDTO>? Listas { get; set; } = new List<RetornaListaTarefasDTO>();
-    public ResumoDTO ResumoDados { get; set; }
+    public ResumoDTO ResumoDados { get; set; } = new ResumoDTO();
 
 
     protected async override Task OnInitializedAsync()
